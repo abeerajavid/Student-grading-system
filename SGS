@@ -1,0 +1,58 @@
+class StudentGradingSystem:
+    def __init__(self):
+        self.grades = {}
+
+    def add_grade(self, student_name, grade):
+        """Add or update the grade for a student."""
+        self.grades[student_name] = grade
+        print(f"Grade for {student_name} has been set to {grade}.")
+
+    def delete_grade(self, student_name):
+        """Delete the grade for a student."""
+        if student_name in self.grades:
+            del self.grades[student_name]
+            print(f"Grade for {student_name} has been deleted.")
+        else:
+            print(f"No grade found for {student_name}.")
+
+    def view_grades(self):
+        """Display all students and their grades."""
+        if not self.grades:
+            print("No grades available.")
+        else:
+            for student, grade in self.grades.items():
+                print(f"{student}: {grade}")
+
+def main():
+    system = StudentGradingSystem()
+
+    while True:
+        print("\nStudent Grading System")
+        print("1. Add Grade")
+        print("2. Delete Grade")
+        print("3. View All Grades")
+        print("4. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            student_name = input("Enter student's name: ")
+            grade = input("Enter grade for " + student_name + ": ")
+            system.add_grade(student_name, grade)
+
+        elif choice == '2':
+            student_name = input("Enter student's name to delete: ")
+            system.delete_grade(student_name)
+
+        elif choice == '3':
+            system.view_grades()
+
+        elif choice == '4':
+            print("Exiting the system...")
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
